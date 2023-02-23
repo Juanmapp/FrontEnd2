@@ -15,6 +15,12 @@
 /* ------------------------------ 👇Comenzamos ------------------------------ */
 // Primero debemos limpiar los scripts anteriores y dejar solo las funciones, quitamos las variables y las empezamos a declarar solo en este script
 
+
+
+
+
+
+
 let puntajes = {
     usuario: 0,
     computadora: 0,
@@ -23,12 +29,14 @@ let puntajes = {
 
 const nombreJugador = iniciarJuego();
 
+
+let partidasJugadas = 0
 // alert(resultadoDePartida);
 
 // 👇 mientras ninguno haya llegado a 2 puntos seguimos jugando
 while (puntajes.usuario < 2 && puntajes.computadora < 2 ) {
 
-
+partidasJugadas++
     const resultadoDePartida = compararJugadas()
     alert(resultadoDePartida);
     
@@ -36,16 +44,24 @@ while (puntajes.usuario < 2 && puntajes.computadora < 2 ) {
     console.log(resultadoDePartida);
     if (resultadoDePartida.includes("ganaste")) {
         puntajes.usuario++;
-    } else if (resultadoDePartida.includes("ganaste")) {
+    } else if (resultadoDePartida.includes("perdiste")) {
         puntajes.computadora++
     } else {
         puntajes.empates++
     }
 
     console.table(puntajes);
-    alert(puntajes)
 
-}
+
+}   
+
+alert("Finalizo el juego!! \n" + "Partidas jugadas: " + partidasJugadas + "\n" + "\n" + 
+    "Partidas ganadas por el usuario: " + puntajes.usuario + "\n" +
+    "Partidas ganadas por la computadora: " + puntajes.computadora + "\n" +
+    "Empates: " + puntajes.empates)
+   
+
+
 
 /* -------------------------------------------------------------------------- */
 /*                          CONSIGNA MESA DE TRABAJO                          */
