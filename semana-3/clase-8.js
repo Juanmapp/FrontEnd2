@@ -58,8 +58,10 @@ function eliminarAlbum() {
     
         console.log(e.key) 
         console.log(albumEliminado)
-
-    let posicion = albumesFamosos.findIndex(album=> album.nombre == albumEliminado)
+    let posicion = albumesFamosos.findIndex(
+        album=> album.nombre == albumEliminado
+        )
+        
     console.log("Es la posicion:" + posicion)
     if (posicion != -1) {
     albumesFamosos.splice(posicion, 1)
