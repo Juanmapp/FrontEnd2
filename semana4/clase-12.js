@@ -46,7 +46,13 @@ function mostrarMensajeExito(listado) {
         const enviar = document.getElementById("enviar")
         enviar.disabled = true
         // form.removeEventListener('submit', evento => {
-        setTimeout(() => {enviar.disable = false},000011)    
+        setTimeout(() => {
+            enviar.disabled = !true
+            divTemplate1.style.opacity = 0
+            datos = 0
+            }
+        ,4000)
+        
         
     // })    
     }

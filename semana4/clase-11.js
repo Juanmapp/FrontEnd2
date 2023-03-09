@@ -70,6 +70,7 @@ form.addEventListener('submit', function (evento) {
 
 
 
+
 /* ----------------------------- MESA DE TRABAJO ---------------------------- */
 /* -------------------------------------------------------------------------- */
 /*                         [3] FUNCION: validar datos                         */
@@ -103,4 +104,9 @@ function validarInformacion(usuario) {
     }
 
     return errores;
+}
+
+
+function handleSubmit(event) {
+    console.log(event.target.value,"hola"); 
 }
