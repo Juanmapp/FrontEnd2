@@ -38,4 +38,18 @@ function renderizarErrores(listado) {
 
 function mostrarMensajeExito(listado) {
     //   desarrollar la funcion aqui
+    if (listado.length === 0) {
+        const divTemplate1 = document.createElement('div');
+        divTemplate1.style = "background:green;padding:.5em 1em;color: white;margin: .5em 0;";
+        divTemplate1.innerHTML += `<p><small>¡Formulario completado con éxito!</small></p>`
+        form.appendChild(divTemplate1)
+        const enviar = document.getElementById("enviar")
+        enviar.disabled = true
+        // form.removeEventListener('submit', evento => {
+        setTimeout(() => {enviar.disable = false},000011)    
+        
+    // })    
+    }
+    
 }
+
