@@ -25,6 +25,12 @@ const baseDeDatos = {
       email: "julianne.oconner@kory.org",
       password: "MysuperPassword345",
     },
+    {
+      id: 5,
+      name: "Patricia Lebsack",
+      email: "x@gmail.com",
+      password: "xxxxx",
+    },
   ],
 };
 
@@ -40,16 +46,19 @@ let passUsu = ""
 // window.addEventListener("load", function() {
 let login = document.querySelector(".login-btn")
 let loader = document.getElementById("loader")
-console.log(loader)
+let statuss = document.getElementById("status-container")
+
 login.addEventListener("click", function() { 
-  let datos = capturarDatos()
   
-console.log(emailUsu, passUsu);
+  
+
   loader.classList.remove("hidden")
   setTimeout(() => {
     loader.classList.add("hidden")
-    let validarP = validarPersona(capturarDatos)
-    let validar = validarDatos(validarPersona)
+    
+    let datos = capturarDatos()
+    let validarP = validarPersona(datos)
+    let validar = validarDatos(validarP, datos)
   },3000)
   
 
@@ -58,12 +67,15 @@ console.log(emailUsu, passUsu);
 
 
 function capturarDatos() {
-  let emailUsu = ""
-  let passUsu = ""
-  let email = document.getElementById("email-input")
-let password = document.getElementById("password-input") 
- emailUsu = email.value
- passUsu = password.value
+  const objeto = {
+  emailUsu : "",
+  passUsu  : ""
+}
+  const email = document.getElementById("email-input")
+const password = document.getElementById("password-input") 
+ objeto.emailUsu = email.value
+ objeto.passUsu = password.value
+ return objeto
 }
 
 
@@ -89,27 +101,33 @@ let password = document.getElementById("password-input")
 // un mensaje de bienvenida al sitio.
 let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
 
-function validarDatos(x) {
-  if(!emailRegex.test(emailUsu) || passUsu < 5 || validarPersona() == false) {
-    alert("Alguno de los datos ingresados son incorrectos")
+function validarDatos(x,y) {
+  
+  if(!emailRegex.test(y.emailUsu) || y.passUsu < 5 || !x) {
+    statuss.innerHTML = "<small>Alguno de los datos ingresados son incorrectos</small>"
+    statuss.classList.add("invalido")
+    
  } else {
-  alert("Bienvenido!!")
+  statuss.classList.remove("invalido")
+  statuss.innerHTML = "<h1>Bienvenido!!</h1>"
+  statuss.classList.add("bienvenido")
+ }
  }
 
- }
-
- function validarPersona(x) {
+ function validarPersona(datos) {
       let usuarioRegistrado = false
+      
       baseDeDatos.usuarios.forEach(usuario => {
-        if (usuario.email === emailUsu && usuario.password === passUsu) {
+        
+        if ((usuario.email === datos.emailUsu) && (usuario.password === datos.passUsu)) {
           usuarioRegistrado = true
         }
-        console.log(usuario.email, usuario.password, emailUsu, passUsu)
+        // console.log(usuario.email, usuario.password, datos.emailUsu, datos.passUsu)
       });
       console.log(usuarioRegistrado)
       return usuarioRegistrado
     }
-    console.log( "hola" + validarPersona())
+    // console.log( "hola" + validarPersona())
 // })
 /* 
 TIPS:
