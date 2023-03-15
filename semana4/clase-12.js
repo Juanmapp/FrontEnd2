@@ -13,6 +13,7 @@ function renderizarErrores(listado) {
     // si el listado no está vacío..
     // creamos la caja con los errores presentes
     if (listado.length > 0) {
+        
         const divTemplate = document.createElement('div');
         divTemplate.setAttribute('id', 'errores');
         divTemplate.style = "background:rgba(255, 0, 0, 0.2);padding:.5em 1em;color: red;margin: .5em 0;";
