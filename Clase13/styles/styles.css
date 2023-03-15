@@ -92,3 +92,23 @@ small {
 .hidden {
   display: none !important;
 }
+
+.bienvenido h1{
+  color: green;
+  background-color: darkgrey;
+  text-align: center;
+
+  height: 40px !important;
+  width: 270px;
+}
+
+.invalido small {
+  color:red;
+  background-color: darkgrey;
+  text-align: center;
+  height: 40px !important;
+  width: 270px;
+  
+  
+}
+
