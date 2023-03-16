@@ -28,16 +28,19 @@ const baseDeDatos = {
   ],
 };
 
-let emailUsu = ""
-let passUsu = ""
-    
+
 
 let login = document.querySelector(".login-btn")
 let loader = document.getElementById("loader")
 let statuss = document.getElementById("status-container")
 
-login.addEventListener("click", function() { 
+
+
+window.addEventListener("load", function () {
+
+  if(this.localStorage.getItem("user")== null) {
   
+  login.addEventListener("click", function() { 
   
 
   loader.classList.remove("hidden")
@@ -46,19 +49,28 @@ login.addEventListener("click", function() {
     
     let datos = capturarDatos()
     let validarP = validarPersona(datos)
+    localStorage.setItem("user", JSON.stringify(datos))
     let validar = validarDatos(validarP, datos)
+    
   },3000)
   
 
+
+})
+} else {
+  localStorageData()
+}
 })
 
 
 
 function capturarDatos() {
   const objeto = {
-  emailUsu : "",
-  passUsu  : ""
-}
+    nombreUsu : "",
+    emailUsu : "",
+    passUsu  : ""
+  }
+  
   const email = document.getElementById("email-input")
 const password = document.getElementById("password-input") 
  objeto.emailUsu = email.value
@@ -73,12 +85,14 @@ function validarDatos(x,y) {
   
   if(!emailRegex.test(y.emailUsu) || y.passUsu < 5 || !x) {
     statuss.innerHTML = "<small>Alguno de los datos ingresados son incorrectos</small>"
-    statuss.classList.add("invalido")
+    
     
  } else {
-  statuss.classList.remove("invalido")
-  statuss.innerHTML = "<h1>Bienvenido!!</h1>"
-  statuss.classList.add("bienvenido")
+  localStorageData()
+  
+
+  // statuss.innerHTML = "Bienvenido"
+  
  }
  }
 
@@ -89,12 +103,30 @@ function validarDatos(x,y) {
         
         if ((usuario.email === datos.emailUsu) && (usuario.password === datos.passUsu)) {
           usuarioRegistrado = true
+          datos.nombreUsu = usuario.name
         }
         
       });
       console.log(usuarioRegistrado)
       return usuarioRegistrado
     }
+
+function localStorageData() {
+  let objetoDeStorage = localStorage.getItem("user")
+  let objetoParseado = JSON.parse(objetoDeStorage)
+  document.querySelector("h1").innerText = `Bienvenido al sitio ${objetoParseado.nombreUsu} `
+  let form = document.querySelector("form")
+  form.classList.add("hidden")
+  let button = document.createElement("button")
+  button.innerText = "Cerrar Sesión"
+  button.classList.add("login-btn")
+  let main = document.querySelector("main")
+  main.appendChild(button)
+  button.addEventListener("click", function() {
+    localStorage.clear()
+    location.reload()
+  })
+}
 
 
 
