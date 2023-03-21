@@ -74,11 +74,9 @@ function botonCerrarSesion() {
     let div = document.querySelector(".user")
     console.log("hola");
     let button = document.createElement("button")
-    // div.innerHTML += `<button> Cerrar sesión </button>`
     button.innerText = "Cerrar sesión"
     button.classList.add("cerrar-sesion")
     div.appendChild(button) 
-
     button.addEventListener("click", function() {
         let confirmacion = confirm("¿Seguro desea cerrar sesión?")
 

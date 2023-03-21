@@ -79,9 +79,12 @@ const boton = document.querySelector('button');
 
 boton.addEventListener('click', function () {
    console.log("Clink para ver comentarios...");
+   
+
 
 //    Esta funcion retorna una promesa, por eso capturamos su resultado con el then()
    consultaAsincrona("endpoint").then( respuesta => console.log(respuesta))
+   
 })
 
 /* -------------------------------------------------------------------------- */
@@ -102,17 +105,19 @@ function consultaAsincrona(texto) {
             if(texto === "endpoint"){
                 // si está OK devolvemos el listado
                 resolve(listadoComentarios);
+                
+                
             } else{
                 // otra posibilidad es que la promesa sea rechazada
                 reject({
                     mensaje: "Consulta rechazada."
                 })
             }
-    
+            renderizarElementos(listadoComentarios)
         }, 2500)
     
     })
-
+    
 }
 
 /* ----------------------------- Mesa de trabajo ---------------------------- */
@@ -131,4 +136,18 @@ function consultaAsincrona(texto) {
 
 function renderizarElementos(listado){
     // desarrollar la funcion 👇
+    const comentario = document.querySelector(".comentario")
+// const h4 = document.querySelector("h4")
+//     const p = document.querySelector("p")
+    setTimeout(function() {
+    listado.forEach(element => {
+        
+        comentario.innerHTML = `<h4>${element.email}</h4>`
+        comentario.innerHTML = `<p>${element.body}</p>`
+        console.log("hola")
+    })},3000)
+
+
+
+
 }
