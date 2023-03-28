@@ -21,7 +21,12 @@ function consultaApi(endpoint) {
             console.log(datosJs);
             renderizarElementos(datosJs);
         })
-
+        try {
+            consultaApi(endpoint);
+        }catch(error) {
+            alert("Intente mas tarde")
+        
+        }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -30,12 +35,13 @@ function consultaApi(endpoint) {
 // Vamos a reimplementar la escucha del click lanzar las nuevas funciones.
 
 const boton = document.querySelector('button');
-const endpoint = 'https://jsonplaceholder.typicode.com/comments';
+const endpoint = 'https://ajsonplaceholder.typicode.com/comments';
 
 boton.addEventListener('click', function () {
     console.log("Clink para ver comentarios...");
 
     consultaApi(endpoint);
+    
 
 
 })
@@ -67,6 +73,9 @@ function renderizarElementos(listado) {
 // En este caso deberan cumplir con nuevos requerimientos que necesita la aplicación.
 // 1- En el caso de la consulta a la API, si la misma no es satisfactoria, deberá arrojar
 // un error que se le muestre al usuario.
+
+
+
 // 2- Para lograr ver el error podemos forzarlo modificando el endpoint incorrectamente,
 // para detectar y arrojar el error deben implementar el bloque try().catch()
 // 3- Si los comentarios llegan y se cargan correctamente, el botón de "Ver comentarios"

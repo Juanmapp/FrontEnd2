@@ -139,13 +139,14 @@ function renderizarElementos(listado){
     const comentario = document.querySelector(".comentario")
 // const h4 = document.querySelector("h4")
 //     const p = document.querySelector("p")
-    setTimeout(function() {
+    
     listado.forEach(element => {
+       
         
         comentario.innerHTML = `<h4>${element.email}</h4>`
         comentario.innerHTML = `<p>${element.body}</p>`
         console.log("hola")
-    })},3000)
+    })
 
 
 

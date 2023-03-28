@@ -18,14 +18,18 @@ window.addEventListener('load', function () {
 /*                 [2] FUNCION: capturamos los datos del form                 */
 /* -------------------------------------------------------------------------- */
 function capturarDatos() {
-    const titulo = document.querySelector('#titulo');
-    const comentario = document.querySelector('#comentario');
+    
+    const nombre = document.querySelector('#nombre');
+    const apellido = document.querySelector('#apellido');
+    const email = document.querySelector('#email');
+    const password = document.querySelector('#password');
 
     // armamos el objeto basado en lo que nos pide la api
     let objeto = {
-        title: titulo.value,
-        body: comentario.value,
-        userId: 1,
+        nombre: nombre.value,
+        apellido: apellido.value,
+        email : email.value,
+        password : password.value
       }
 
     return objeto;
@@ -44,18 +48,20 @@ function postearComentario() {
     // 👇 armamos las configuraciones
     // la api acepta JSON, por eso stringuificamos los datos
     const configuraciones = {
-        method: 'POST',
-        body: JSON.stringify(datos),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
+        
+        "method": "POST",
+        
+    "headers": {
+        'Content-Type': 'application/json'  
         },
+        "body" : JSON.stringify(datos) 
     }
 
-    fetch('https://jsonplaceholder.typicode.com/posts', configuraciones)
+    fetch('https://todo-api.ctd.academy/v1/users', configuraciones)
         .then((respuesta) => respuesta.json())
         .then((data) => {
             console.log(data);
-            renderizarRespuesta(data);
+            // renderizarRespuesta(data);
         });
 }
 
@@ -63,22 +69,22 @@ function postearComentario() {
 /*                      [4] FUNCION: renderizar respuesta                     */
 /* -------------------------------------------------------------------------- */
 
-function renderizarRespuesta(datos) {
-    const div = document.querySelector('.respuesta')
+// function renderizarRespuesta(datos) {
+//     const div = document.querySelector('.respuesta')
     
-    const template = `
-        <p>✅ Datos cargados en el servidor</p>
-        <p>
-            Title: ${datos.title}
-        </p>
-        <p>
-            Body: ${datos.body}
-        </p>
-    `;
+//     const template = `
+//         <p>✅ Datos cargados en el servidor</p>
+//         <p>
+//             Title: ${datos.title}
+//         </p>
+//         <p>
+//             Body: ${datos.body}
+//         </p>
+//     `;
 
-    div.innerHTML = template;
+//     div.innerHTML = template;
 
-}
+// }
 
 
 /* -------------------------------------------------------------------------- */
@@ -88,3 +94,25 @@ function renderizarRespuesta(datos) {
 // en el siguiente DOC vamos a poder ver nuestra tarea
 // 👇
 // https://docs.google.com/document/d/1ZiCPf7IICvtp6rwfxoq5Wh5dJUROKqNw/preview
+
+// let data = {
+//     "firstName": "pepito2",
+//     "lastName": "milanesa2",
+//     "email": "pepemila2@gmail.com",
+//     "password": "pepinmila2"
+// }
+
+// fetch('https://todo-api.ctd.academy/v1/', {
+//     "method": "POST",
+//     "headers": {
+//         'https://http://todo-api.ctd.academy:3000//v1/users', 
+//         'accept': 'application/json', 
+//         'Content-Type': 'application/json'  
+
+//     },
+//     "body" : JSON.stringify(data) 
+        
+// })
+// .then(response => response.json())
+// .then(info => console.log(info))
+// .catch(e => console.log("Error : " + e))
